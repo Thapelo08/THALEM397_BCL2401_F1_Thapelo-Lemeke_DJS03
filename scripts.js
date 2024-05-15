@@ -90,32 +90,31 @@ document.querySelector('[data-list-button]').innerHTML = `
     <span>Show more</span>
     <span class="list__remaining"> (${(matches.length - (page * BOOKS_PER_PAGE)) > 0 ? (matches.length - (page * BOOKS_PER_PAGE)) : 0})</span>
 `
-
-document.querySelector('[data-search-cancel]').addEventListener('click', () => {
-    document.querySelector('[data-search-overlay]').open = false
-})
-
-document.querySelector('[data-settings-cancel]').addEventListener('click', () => {
+//Function to handle 'data-search-cancel click event
+function handleSearchCancelClick(){
+    documentment.querySelector('[data-search-overlay]').open = false
+}
+//Function to handle 'data-settings-cancel click event
+function handleSettingsCancelClick(){
     document.querySelector('[data-settings-overlay]').open = false
-})
-
-document.querySelector('[data-header-search]').addEventListener('click', () => {
-    document.querySelector('[data-search-overlay]').open = true 
-    document.querySelector('[data-search-title]').focus()
-})
-
-document.querySelector('[data-header-settings]').addEventListener('click', () => {
-    document.querySelector('[data-settings-overlay]').open = true 
-})
-
-document.querySelector('[data-list-close]').addEventListener('click', () => {
-    document.querySelector('[data-list-active]').open = false
-})
-
-document.querySelector('[data-settings-form]').addEventListener('submit', (event) => {
-    event.preventDefault()
-    const formData = new FormData(event.target)
+    document.querySelector('[data-search-title]').focus();
+}
+// Function to handle 'data-header-search' click event
+function handleHeaderSearchClick(){
+     document.querySelector('[data-settings-overlay]').open = true
+}
+// Function to handle 'data-list-close' click event
+function handleListClose(){
+  document.querySelector('[data-list-active]').open = false  
+}
+// Function to handle 'data-settings-form' submit event
+function handleDataSettingsForm(event){
+    event.preventDefault();
+ const formData = new FormData(event.target)
     const { theme } = Object.fromEntries(formData)
+
+
+   
 
     if (theme === 'night') {
         document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
@@ -126,7 +125,7 @@ document.querySelector('[data-settings-form]').addEventListener('submit', (event
     }
     
     document.querySelector('[data-settings-overlay]').open = false
-})
+}
 //Books
 document.querySelector('[data-search-form]').addEventListener('submit', (event) => {
     event.preventDefault()
