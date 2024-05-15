@@ -26,7 +26,7 @@ for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
 }
 
 document.querySelector('[data-list-items]').appendChild(starting)
-
+//Genre
 const genreHtml = document.createDocumentFragment()
 const firstGenreElement = document.createElement('option')
 firstGenreElement.value = 'any'
@@ -41,7 +41,7 @@ for (const [id, name] of Object.entries(genres)) {
 }
 
 document.querySelector('[data-search-genres]').appendChild(genreHtml)
-
+//Author
 const authorsHtml = document.createDocumentFragment()
 const firstAuthorElement = document.createElement('option')
 firstAuthorElement.value = 'any'
@@ -57,15 +57,31 @@ for (const [id, name] of Object.entries(authors)) {
 
 document.querySelector('[data-search-authors]').appendChild(authorsHtml)
 
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.querySelector('[data-settings-theme]').value = 'night'
-    document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
-    document.documentElement.style.setProperty('--color-light', '10, 10, 20');
-} else {
-    document.querySelector('[data-settings-theme]').value = 'day'
-    document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
-    document.documentElement.style.setProperty('--color-light', '255, 255, 255');
+// Function to set the theme value
+function setThemeValue(value) {
+    document.querySelector('[data-settings-theme]').value = value;
 }
+
+// Function to set CSS variables
+function setCSSVariables(darkColor, lightColor) {
+    document.documentElement.style.setProperty('--color-dark', darkColor);
+    document.documentElement.style.setProperty('--color-light', lightColor);
+}
+
+// Function to check if the OS is in dark mode and apply the corresponding theme and CSS variables
+function checkDarkMode(
+) {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setThemeValue('night');
+        setCSSVariables('255, 255, 255', '10, 10, 20');
+    } else {
+        setThemeValue('day');
+        setCSSVariables('10, 10, 20', '255, 255, 255');
+    }
+}
+
+// Call the function to perform the initial check
+checkDarkMode();
 
 document.querySelector('[data-list-button]').innerText = `Show more (${books.length - BOOKS_PER_PAGE})`
 document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) > 0
@@ -111,7 +127,7 @@ document.querySelector('[data-settings-form]').addEventListener('submit', (event
     
     document.querySelector('[data-settings-overlay]').open = false
 })
-
+//Books
 document.querySelector('[data-search-form]').addEventListener('submit', (event) => {
     event.preventDefault()
     const formData = new FormData(event.target)
