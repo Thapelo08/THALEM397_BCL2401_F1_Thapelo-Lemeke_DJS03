@@ -45,7 +45,7 @@ const populateSelect = (selectElement, options, defaultOptionText) => {
     selectElement.appendChild(fragment);
 };
 
-
+// Function to handle theme settings
 const applyTheme = (theme) => {
     if (theme === 'night') {
         document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
