@@ -57,7 +57,7 @@ const applyTheme = (theme) => {
     document.querySelector('[data-settings-theme]').value = theme;
 };
 
-// Function to initialize the page with default values
+// Function to initialize the page
 const initializePage = () => {
     const bookContainer = document.querySelector('[data-list-items]');
     appendBookPreviews(matches.slice(0, BOOKS_PER_PAGE), bookContainer);
@@ -78,7 +78,7 @@ const showMoreBooks = () => {
     document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) <= 0;
 };
 
-// Function to filter books based on search criteria
+//
 const filterBooks = (filters) => {
     return books.filter(book => {
         const matchesGenre = filters.genre === 'any' || book.genres.includes(filters.genre);
@@ -88,7 +88,7 @@ const filterBooks = (filters) => {
     });
 };
 
-// Event listeners setup
+//
 const setupEventListeners = () => {
     document.querySelector('[data-search-cancel]').addEventListener('click', () => {
         document.querySelector('[data-search-overlay]').open = false;
@@ -163,8 +163,7 @@ const setupEventListeners = () => {
         }
     });
 };
-
-// Initialize the application
+//
 document.addEventListener('DOMContentLoaded', () => {
     initializePage();
     setupEventListeners();
