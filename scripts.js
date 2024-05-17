@@ -31,7 +31,7 @@ const appendBookPreviews = (books, container) => {
     container.appendChild(fragment);
 };
 
-
+// Function to create and append options to a select element
 const populateSelect = (selectElement, options, defaultOptionText) => {
     const fragment = document.createDocumentFragment();
     const defaultOption = createElement('option', '', defaultOptionText, { value: 'any' });
