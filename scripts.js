@@ -24,7 +24,6 @@ const createBookPreview = (book) => {
         </div>
     `, { 'data-preview': id });
 };
-
 // Function to append book previews to the list
 const appendBookPreviews = (books, container) => {
     const fragment = document.createDocumentFragment();
@@ -32,7 +31,7 @@ const appendBookPreviews = (books, container) => {
     container.appendChild(fragment);
 };
 
-// Function to create and append options to a select element
+
 const populateSelect = (selectElement, options, defaultOptionText) => {
     const fragment = document.createDocumentFragment();
     const defaultOption = createElement('option', '', defaultOptionText, { value: 'any' });
@@ -46,7 +45,7 @@ const populateSelect = (selectElement, options, defaultOptionText) => {
     selectElement.appendChild(fragment);
 };
 
-// Function to handle theme settings
+
 const applyTheme = (theme) => {
     if (theme === 'night') {
         document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
