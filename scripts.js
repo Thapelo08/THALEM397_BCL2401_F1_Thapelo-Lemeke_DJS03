@@ -163,7 +163,7 @@ const setupEventListeners = () => {
         }
     });
 };
-//
+// initialize the criteria
 document.addEventListener('DOMContentLoaded', () => {
     initializePage();
     setupEventListeners();
